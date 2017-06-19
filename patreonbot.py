@@ -109,6 +109,10 @@ async def shutdown(ctx):
         await bot.say("Shutting down!")
         await bot.send_message(console, '`' + str(ctx.message.author) + '` successfully shutdown Ayane Patreon!')
         raise SystemExit
+        
+@bot.command(pass_context = True)
+async def inviteayane(ctx):
+    await bot.say("Invite **Production**: https://polr.me/Ayane\nInvite **Beta**: https://polr.me/Ayane-Beta")
     
 # run bot
 bot.run('token')
