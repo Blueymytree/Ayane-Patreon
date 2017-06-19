@@ -67,8 +67,24 @@ async def ping(ctx):
 
 @bot.command(pass_context = True)
 async def invite(ctx):
-    embed = discord.Embed(description='You can find the patreon page [here!](https://patreon.com/AyaneBot) After donating, join the support server and ping August, along with proof, so he can give you the Patreon Bot!')
+    embed = discord.Embed(title='Invite me to your server!', description='Hi there! Inviting me is a bit different than you may think. Since this is a patreon bot, you must donate at least **$1**! \nYou can find the patreon page [here!](https://patreon.com/AyaneBot) \nAfter donating, join the [support server](https://discord.gg/muPA9ME) and ping August, along with proof, so he can give you the Patreon Bot!', color=0xB76E79)
     await bot.send_message(ctx.message.channel, content=None, embed=embed)
+
+@bot.command(pass_context = True)
+async def info(ctx):
+    version = discord.__version__
+    before = time.monotonic()
+    await (await bot.ws.ping())
+    after = time.monotonic()
+    ping = (after - before) * 1000
+    pversion = platform.python_version()
+    server_count = 0
+    member_count = 0
+    for server in bot.servers:
+        server_count += 1
+        for member in server.members:
+            member_count += 1
+    await bot.say("```prolog\n --------- Bot Information --------- \n\nCommands: 5\nVersion: 0.0.1\nDiscord.py Version: " + str(version) + "\nPython Version: " + str(pversion) + "\nPing: {0:.0f}ms\n\n --------- Guild Information --------- \n\nGuilds: ".format(ping) + str(server_count) + "\nUsers: " + str(member_count) + "\nHost: Desii```")
 
 # owner
 @bot.command(pass_context = True)
