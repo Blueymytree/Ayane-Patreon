@@ -86,6 +86,10 @@ async def info(ctx):
             member_count += 1
     await bot.say("```prolog\n --------- Bot Information --------- \n\nCommands: 5\nVersion: 0.0.1\nDiscord.py Version: " + str(version) + "\nPython Version: " + str(pversion) + "\nPing: {0:.0f}ms\n\n --------- Guild Information --------- \n\nGuilds: ".format(ping) + str(server_count) + "\nUsers: " + str(member_count) + "\nHost: Desii```")
 
+@bot.command(pass_context = True)
+async def inviteayane(ctx):
+    await bot.say("Invite **Production**: https://polr.me/Ayane\nInvite **Beta**: https://polr.me/Ayane-Beta")
+    
 # owner
 @bot.command(pass_context = True)
 async def status(ctx, *, setGame: str):
@@ -109,10 +113,6 @@ async def shutdown(ctx):
         await bot.say("Shutting down!")
         await bot.send_message(console, '`' + str(ctx.message.author) + '` successfully shutdown Ayane Patreon!')
         raise SystemExit
-        
-@bot.command(pass_context = True)
-async def inviteayane(ctx):
-    await bot.say("Invite **Production**: https://polr.me/Ayane\nInvite **Beta**: https://polr.me/Ayane-Beta")
     
 # run bot
 bot.run('token')
