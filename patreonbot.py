@@ -41,7 +41,7 @@ async def on_message(message):
 # commands
 @bot.command(pass_context = True)
 async def help(ctx):
-    embed = discord.Embed(title='Ayane Patreon Bot Commands!', color=0xB76E79).add_field(name='Info',value='`help`, `ping`, `donate`, `invite`').set_footer(text='The prefix is a!!. Use a!!<command>!')
+    embed = discord.Embed(title='Ayane Patreon Bot Commands!', color=0xB76E79).add_field(name='Info',value='`help`, `ping`, `donate`, `invite`, `info`').set_footer(text='The prefix is a!!. Use a!!<command>!')
     await bot.send_message(ctx.message.channel, content=None, embed=embed)
 
 @bot.command(pass_context = True)
@@ -97,6 +97,18 @@ async def status(ctx, *, setGame: str):
         await bot.change_presence(game=discord.Game(name=setGame))
         await bot.say("Set my playing status to `" + setGame + "`!")
         await bot.send_message(console, '`' + ctx.message.author.name + '#' + ctx.message.author.discriminator + '` changed my playing status to `' + setGame + '`.')
+
+@bot.command(pass_context = True)
+async def shutdown(ctx):
+    member = ctx.message.author
+
+    if member.id not in ownerids:
+        await bot.say('You cannot shut me down.')
+        await bot.send_message(console, '`' +  str(ctx.message.author) + '` tried to shut me down! :frowning:')
+    else:
+        await bot.say("Shutting down!")
+        await bot.send_message(console, '`' + str(ctx.message.author) + '` successfully shutdown Ayane Patreon!')
+        raise SystemExit
     
 # run bot
 bot.run('token')
